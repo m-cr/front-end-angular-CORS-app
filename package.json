@@ -5,8 +5,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "nodemon server.js"
+    "start:dev": "nodemon -e html,js server.js"
   },
   "author": "Michael Crowley",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "angular": "^1.6.1",
+    "angular-ui-router": "^0.4.0",
+    "bootstrap": "^3.3.7",
+    "express": "^4.14.0"
+  }
 }

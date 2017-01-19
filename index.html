@@ -3,8 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <title>Custom Solution for SiriusIQMobile</title>
+  <link type="text/css" rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css"/>
+  <script src="/angular/angular.js"></script>
+  <script src="/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="/app.js"></script>
+  <script src="/product-detail/product-detail-controller.js"></script>
+  <script src="/product-list/product-list-controller.js"></script>
+  <script src="/products-service.js"></script>
+  <script src="/login-controller.js"></script>
+  <script src="/auth-service.js"></script>
 </head>
 <body ng-app="app">
-	<ui-view></ui-view>
+	<div class="container">
+	
+  	<h1>Custom Solution for SiriusIQMobile</h1>
+    <ul class="nav nav-tabs" style="margin-bottom:10px">
+        <li ui-sref-active="active">
+          <a ui-sref="home">
+            Login
+          </a>
+        </li><li ui-sref-active="active">
+          <a ui-sref="productList">
+           Products
+          </a>
+        </li>
+    </ul>
+  	<ui-view></ui-view>
+  
+  </div>
 </body>
 </html>

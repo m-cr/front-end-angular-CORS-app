@@ -1,5 +1,5 @@
 'use strict';
 
-app.controller('ProductListCtrl', function(products, ProductsService){
-	this.products = products;
+app.controller('ProductDetailCtrl', function(product, ProductsService){
+	this.product = product;
 });
