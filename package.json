@@ -4,7 +4,8 @@
   "description": "Angular 1.5 app for SiriusIQMobile custom solution",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "nodemon server.js"
   },
   "author": "Michael Crowley",
   "license": "ISC"
