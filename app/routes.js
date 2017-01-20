@@ -4,11 +4,11 @@ var states = function($stateProvider) {
 	$stateProvider
 		.state('home', {
 			url: '/',
-			templateUrl: 'home.html'
+			templateUrl: '/components/home/home.html'
 		})
 		.state('productList', {
 			url: '/products',
-			templateUrl: 'product-list/product-list.html',
+			templateUrl: 'components/products/product-list.html',
 			controller: 'ProductListCtrl as list',
 			resolve: {
 				products: function (ProductsService) {
@@ -18,7 +18,7 @@ var states = function($stateProvider) {
 		})
 		.state('productDetail', {
 			url: '/products/:id',
-			templateUrl: 'product-detail/product-detail.html',
+			templateUrl: 'components/products/product-detail.html',
 			controller: 'ProductDetailCtrl as detail',
 			resolve: {
 				product: function (ProductsService, $stateParams) {
