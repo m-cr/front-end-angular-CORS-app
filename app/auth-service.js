@@ -1,9 +1,10 @@
 'use strict';
 
-app.factory('AuthService', function($http, $window){
+app.factory('AuthService', function($http, $window, $rootScope, $state){
 	var AuthService = {};
 
 	AuthService.sendLogIn = function(credentials){
+		console.log(credentials);
 		return $http({
 			method: 'POST',
 			url: 'http://localhost:3005/api/authenticate',
@@ -13,11 +14,12 @@ app.factory('AuthService', function($http, $window){
 			}
 		})
 		.then(function(response){
-			var token = response.data.token ? response.data.token : null;
-			if (token) {
-				$window.localStorage.token = token;
-				console.log($window.localStorage);
-			} else console.log(response.data)
+			if (response.data.token) {
+				$window.localStorage.token = response.data.token;
+				console.log('success ' + $window.localStorage.token);
+				$rootScope.$broadcast('loggedIn');
+				$state.go('productList')
+			} else console.log('failure: ' + response.data)
 		});
 	};
 

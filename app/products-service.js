@@ -2,7 +2,7 @@
 
 console.log('service');
 
-app.factory('ProductsService', function($http){
+app.factory('ProductsService', function($http, $window){
 	var ProductsService = {};
 	var products = [];
 
@@ -12,7 +12,8 @@ app.factory('ProductsService', function($http){
 			url: 'http://localhost:3005/api/products'
 		})
 		.then(function(response){
-			console.log(response.data);
+			console.log('token ' + $window.localStorage.token);
+			console.log('response: ' + response.data);
 			angular.copy(response.data, products);
 			return products;
 		});

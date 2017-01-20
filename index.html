@@ -3,26 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <title>Custom Solution for SiriusIQMobile</title>
-  <link type="text/css" rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css"/>
+  <link type="text/css" rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css"/>
+  <link type="text/css" rel="stylesheet" href="/main.css" />
   <script src="/angular/angular.js"></script>
   <script src="/angular-ui-router/release/angular-ui-router.js"></script>
   <script src="/app.js"></script>
-  <script src="/product-detail/product-detail-controller.js"></script>
-  <script src="/product-list/product-list-controller.js"></script>
-  <script src="/products-service.js"></script>
-  <script src="/login-controller.js"></script>
-  <script src="/auth-service.js"></script>
+  <script src="/product-detail/product-detail-controller.js" defer></script>
+  <script src="/product-list/product-list-controller.js" defer></script>
+  <script src="/product-list/product-list-item.js" defer></script>
+  <script src="/product-list/filter-directive.js" defer></script>
+  <script src="/products-service.js" defer></script>
+  <script src="/login-controller.js" defer></script>
+  <script src="/auth-service.js" defer></script>
+  <script src="/routes.js" defer></script>
+  <script src="/login-component.js" defer></script>
 </head>
 <body ng-app="app">
-	<div class="container">
+	<div class="container" ng-controller="MainCtrl">
 	
   	<h1>Custom Solution for SiriusIQMobile</h1>
     <ul class="nav nav-tabs" style="margin-bottom:10px">
-        <li ui-sref-active="active">
-          <a ui-sref="home">
-            Login
+        
+        <li ng-show="!loggedIn" ui-sref-active="active">
+          <a ui-sref="home" ng-show="!loggedIn">
+            Log In
           </a>
-        </li><li ui-sref-active="active">
+        </li>
+
+        <li ng-show="loggedIn">
+          <a ng-click="logOut()">
+            Log Out
+          </a>
+        </li>
+
+        <li ng-show="loggedIn" ui-sref-active="active">
           <a ui-sref="productList">
            Products
           </a>

@@ -1,13 +1,37 @@
 <div class="container">
 	<h3>Products</h3>
+
+    <div class="well" style="margin-bottom: 10px">
+	    <h4 style="float:left">Filter By Brand:</h4>
+	    <button 
+	    	class="btn btn-primary pull-right"
+    		ng-class="{ 'btn-warning': brand === list.brand}" 
+    		style="margin:5px" 
+    		ng-repeat="brand in list.brands" 
+    		ng-click="list.setBrand(brand)">{{brand}}
+	    </button>
+	    <br clear="all" />
+
+	    <h4 style="float:left">Filter By Average Rating:</h4>
+	    <span 
+	    	class="glyphicon pull-right"
+	    	style="margin:5px"
+	    	ng-class="list.rating >= rating ? 'glyphicon-star': 'glyphicon-star-empty'" 
+	  		ng-repeat="rating in list.ratings | orderBy:'id':true" 
+	    	ng-click="list.setRating(rating)"
+	    >
+	    </span>
+
+	    <br clear="all" />
+    </div>
+
 	<ul class="list-group">
-		<li ng-repeat="product in list.products" class="list-group-item">
-			<p>Title: {{ product.title }}</p>
-			<p>Description: {{ product.description }}</p>
-			<p>Price: {{ product.price }}</p>
-			<p>Inventory: {{ product.inventory_qty }}</p>
-			<p>Categories: {{ product.categories.join(',').trim() }}</p>
-			<p><a ui-sref="productDetail({id:product.id})">See Details</a></p>
+		<li 
+			style="margin:5px;" 
+			ng-repeat="product in list.products | filter: list.productFilter" 
+			class="list-group-item"
+		>
+			<product-list-item product="product"></product-list-item>
 		</li>
 	</ul>
 </div>

@@ -2,44 +2,26 @@
 
 var app = angular.module('app', ['ui.router']);
 
-app.config(function($stateProvider){
-	$stateProvider.state('home', {
-		url: '/',
-		templateUrl: 'home.html',
-		controller: 'LogInCtrl as logIn'
+var MainCtrl = function($scope, $window, $state, $rootScope){
+
+	$scope.$on('loggedIn', function(){
+		console.log('logging in');
+		$scope.loggedIn = true;
 	});
-});
-
-app.config(function($stateProvider){	
-	$stateProvider.state('productList', {
-		url: '/products',
-		templateUrl: 'product-list/product-list.html',
-		controller: 'ProductListCtrl as list',
-		resolve: {
-			products: function (ProductsService) {
-				return ProductsService.fetchAll();
-			}
-		}
-	})
-});
-
-app.config(function($stateProvider){
-	$stateProvider.state('productDetail', {
-		url: '/products/:id',
-		templateUrl: 'product-detail/product-detail.html',
-		controller: 'ProductDetailCtrl as detail',
-		resolve: {
-			product: function (ProductsService, $stateParams) {
-				return ProductsService.fetchOne($stateParams.id);
-			}
-		}
+	$scope.$on('loggedOut', function(){
+		$scope.loggedIn = false;
 	});
-});
 
-app.config(function($httpProvider) {
+	$scope.logOut = function(){
+		$window.localStorage.removeItem('token');
+		$rootScope.$broadcast('loggedOut');
+		$state.go('home');
+	}
+}
+
+var customInterceptor = function($httpProvider) {
 	$httpProvider.defaults.useXDomain = true;
 	delete $httpProvider.defaults.headers.common['X-Requested-With'];
-	
 	$httpProvider.interceptors.push(['$q', '$location', '$window', function ($q, $location, $window) {
 		return {
 			'request': function (config) {
@@ -57,5 +39,8 @@ app.config(function($httpProvider) {
 			}
 		};
 	}]);
+}
 
-});
+
+app.controller('MainCtrl', MainCtrl)
+	.config(customInterceptor);
