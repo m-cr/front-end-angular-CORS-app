@@ -7,7 +7,7 @@ app.factory('AuthService', function($http, $window, $rootScope, $state){
 		console.log(credentials);
 		return $http({
 			method: 'POST',
-			url: 'https://api-sirius.herokuapp.com/api/authenticate',
+			url: 'http://localhost:3005/api/authenticate',
 			data: {
 				email: credentials.email,
 				password: credentials.password
@@ -16,10 +16,10 @@ app.factory('AuthService', function($http, $window, $rootScope, $state){
 		.then(function(response){
 			if (response.data.token) {
 				$window.localStorage.token = response.data.token;
-				console.log('success ' + $window.localStorage.token);
 				$rootScope.$broadcast('loggedIn');
 				$state.go('productList')
-			} else console.log('failure: ' + response.data)
+			} 
+			else console.log('failure: ' + response.data)
 		});
 	};
 

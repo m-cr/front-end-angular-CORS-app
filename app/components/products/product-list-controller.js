@@ -11,6 +11,9 @@ app.controller('ProductListCtrl', function(products){
 	});
 
 	this.products = products;
+	this.products.forEach(function(product){
+		product.categories = product.categories.map(function(category){return category.name});
+	});
 	this.brands = ['Brand1', 'Brand2', 'Brand3', 'None'];
 	this.ratings = ['1','2','3','4','5'];
 

@@ -1,10 +1,10 @@
-<div class="container">
-	<product>
-        <h1>{{detail.product.title}}</h1>
-        <img ng-src="{{detail.product.photos}}" />
-        <p>{{detail.product.description}}</p>
-        <p><strong>Categories: </strong>{{detail.product.categories.join(', ')}}</p>
-        <p ng-hide="!detail.product.price"><strong>Price:</strong> ${{detail.product.price}}</p>
-        <p ng-hide="!detail.product.inventory_qty || detail.product.inventory_qty === 0"><strong>In stock:</strong> {{detail.product.inventory_qty}}</p>
-    </product>
+<div class="container text-center">
+	    <h1>{{detail.product.title}}</h1>
+	    <div style="margin-bottom: 20px">
+		    <img ng-src="{{detail.product.photos}}" />
+	    </div>
+	    <p><strong>Description: </strong>{{detail.product.description}}</p>
+	    <p><strong>Categories: </strong>{{detail.product.categories.join(', ').trim()}}</p>
+	    <p ng-hide="!detail.product.price"><strong>Price:</strong> ${{detail.product.price}}</p>
+	    <p ng-hide="!detail.product.inventory_qty || detail.product.inventory_qty === 0"><strong>In stock:</strong> {{detail.product.inventory_qty}}</p>
 </div>
