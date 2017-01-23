@@ -4,7 +4,6 @@ app.factory('AuthService', function($http, $window, $rootScope, $state){
 	var AuthService = {};
 
 	AuthService.sendLogIn = function(credentials){
-		console.log(credentials);
 		return $http({
 			method: 'POST',
 			url: 'https://api-sirius.herokuapp.com/api/authenticate',
