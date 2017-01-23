@@ -22,8 +22,7 @@ var MainCtrl = function($scope, $window, $state, $rootScope){
 }
 
 var customInterceptor = function($httpProvider) {
-	// $httpProvider.defaults.useXDomain = true;
-	// delete $httpProvider.defaults.headers.common['X-Requested-With'];
+	
 	$httpProvider.interceptors.push(['$location', '$q','$window', function ($q, $location, $window) {
 		return {
 			'request': function (config) {
