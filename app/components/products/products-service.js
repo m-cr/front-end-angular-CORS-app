@@ -9,7 +9,7 @@ app.factory('ProductsService', function($http, $window){
 	ProductsService.fetchAll = function(){
 		return $http({
 			method: 'GET',
-			url: 'https://api-sirius.herokuapp.com/api/products'
+			url: 'http://localhost:3005/api/products'
 		})
 		.then(function(response){
 			angular.copy(response.data, products);
@@ -20,7 +20,7 @@ app.factory('ProductsService', function($http, $window){
 	ProductsService.fetchOne = function(id){
 		return $http({
 			method: 'GET',
-			url: 'https://api-sirius.herokuapp.com/api/products/' + id
+			url: 'http://localhost:3005/api/products/' + id
 		})
 		.then(function(response){
 			return response.data;
