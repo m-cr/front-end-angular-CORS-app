@@ -1,31 +1,34 @@
 'use strict';
 
-var states = function($stateProvider) { 
+var states = ['$stateProvider', function($stateProvider) { 
   $stateProvider
     .state('home', {
       url: '/',
-      template: '<login></login>'
+      template: '<div class="well"><login></login></div>'
     })
     .state('productList', {
       url: '/products',
       templateUrl: 'components/products/product-list.html',
       controller: 'ProductListCtrl as list',
       resolve: {
-        products: function (ProductsService) {
-          return ProductsService.fetchAll();
+        products: function (ProductService) {
+          return ProductService.fetchAll();
         }
       }
     })
     .state('productDetail', {
       url: '/products/:id',
       templateUrl: 'components/products/product-detail.html',
-      controller: 'ProductDetailCtrl as detail',
       resolve: {
-        product: function (ProductsService, $stateParams) {
-          return ProductsService.fetchOne($stateParams.id);
+        product: function (ProductService, $stateParams) {
+          return ProductService.fetchOne($stateParams.id);
         }
-      }
+      },
+      controller: function(product){
+        this.product = product;
+      },
+      controllerAs: 'detail'
     });
-}
+}]
 
 app.config(states);

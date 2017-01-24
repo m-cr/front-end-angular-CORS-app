@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('AuthService', function($http, $window, $rootScope, $state){
+app.factory('AuthService',['$http', '$window', '$rootScope', '$state', function($http, $window, $rootScope, $state){
   var AuthService = {};
 
   AuthService.sendLogIn = function(credentials){
@@ -24,4 +24,4 @@ app.factory('AuthService', function($http, $window, $rootScope, $state){
 
   return AuthService;
 
-});
+}]);

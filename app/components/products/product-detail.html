@@ -1,11 +1,23 @@
 <div class="container text-center">
 	    <h1>{{detail.product.title}}</h1>
 	    <div style="margin-bottom: 20px">
-		    <img ng-src="{{detail.product.photos}}" width="600" height="400" />
+		    <img ng-src="{{detail.product.photos}}" width="300" height="300" />
 	    </div>
 	    <p><strong>Description: </strong>{{detail.product.description}}</p>
+	    <p><strong>Brand:</strong> {{ detail.product.brand }}</p>
+	    <p><strong>Price:</strong> ${{ detail.product.price }}</p>
 	    <p><strong>Categories: </strong>{{detail.product.categories.join(', ').trim()}}</p>
-	    <p ng-hide="!detail.product.price"><strong>Price:</strong> ${{detail.product.price}}</p>
-	    <p ng-hide="!detail.product.inventory_qty || detail.product.inventory_qty === 0"><strong>In stock:</strong> {{detail.product.inventory_qty}}</p>
+	    <p><strong>Price:</strong> ${{detail.product.price}}</p>
+	    <p><strong>In stock:</strong> {{detail.product.inventory_qty}}</p>
+	    <p><strong>Average Rating: </strong>{{detail.product.avgRating}}</p>
+	    <hr />
+    	<h4>Reviews:</h4>
+			<div class="well-sm" style="width: 33%; margin: 0 auto;" ng-repeat="review in detail.product.reviews">
+				<p>
+					<strong>{{review.user.email}}:  </strong>
+					<span ng-repeat="star in review.rate track by $index" class="glyphicon glyphicon-star"></span> "{{review.content}}"
+				</p>
+			</div>	    	
+			<br clear="all">
 	    <button ui-sref="productList" class="btn btn-primary">Back</button>
 </div>

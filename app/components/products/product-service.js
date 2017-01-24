@@ -1,12 +1,12 @@
 'use strict';
 
-app.factory('ProductsService', function($http){
-  var ProductsService = {};
+app.factory('ProductService',['$http', function($http){
+  var ProductService = {};
   var products = [];
-  ProductsService.filter = {};
+  ProductService.filter = {};
   
-  ProductsService.filterProducts = function(filter){
-    if (filter !== ProductsService.filter) angular.copy(filter, ProductsService.filter);
+  ProductService.filterProducts = function(filter){
+    if (filter !== ProductService.filter) angular.copy(filter, ProductService.filter);
 
     var filteredProducts = products.filter(function(product){
       if (filter.brand) return product.brand === filter.brand;
@@ -19,7 +19,7 @@ app.factory('ProductsService', function($http){
     return filteredProducts;
   }
 
-  ProductsService.fetchAll = function(){
+  ProductService.fetchAll = function(){
     return $http({
       method: 'GET',
       url: 'http://localhost:3005/api/products'
@@ -31,21 +31,26 @@ app.factory('ProductsService', function($http){
           return sum + review.rate.length 
         }, 0)/(product.reviews.length||1);
       });
-      console.log('fetching all');
       angular.copy(response.data, products);
       return products;
     });
   }
 
-  ProductsService.fetchOne = function(id){
+  ProductService.fetchOne = function(id){
     return $http({
       method: 'GET',
       url: 'http://localhost:3005/api/products/' + id
     })
     .then(function(response){
-      return response.data;
+      var product = response.data;
+      console.log(product);
+      product.categories = product.categories.map( function(category) {return category.name});
+      product.avgRating = product.reviews.reduce(function(sum, review) {
+          return sum + review.rate.length 
+      }, 0)/(product.reviews.length||1);
+      return product;
     });
   }
 
-  return ProductsService;
-});
+  return ProductService;
+}]);

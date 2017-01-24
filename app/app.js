@@ -2,7 +2,7 @@
 
 var app = angular.module('app', ['ui.router']);
 
-var MainCtrl = function($scope, $window, $state, $rootScope){
+var MainCtrl = ['$scope', '$window', '$state', '$rootScope', function($scope, $window, $state, $rootScope){
 	if ($window.localStorage.token){
 		$scope.loggedIn = true;
 	} else { $scope.loggedIn = false}
@@ -19,10 +19,9 @@ var MainCtrl = function($scope, $window, $state, $rootScope){
 		$rootScope.$broadcast('loggedOut');
 		$state.go('home');
 	}
-}
+}]
 
-var customInterceptor = function($httpProvider) {
-	
+var customInterceptor = ['$httpProvider', function($httpProvider) {
 	$httpProvider.interceptors.push(['$location', '$q','$window', function ($q, $location, $window) {
 		return {
 			'request': function (config) {
@@ -40,7 +39,7 @@ var customInterceptor = function($httpProvider) {
 			}
 		};
 	}]);
-}
+}]
 
 
 app.controller('MainCtrl', MainCtrl)
