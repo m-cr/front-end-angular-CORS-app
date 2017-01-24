@@ -1,23 +1,30 @@
-<div class="container text-center">
-	    <h1>{{detail.product.title}}</h1>
-	    <div style="margin-bottom: 20px">
-		    <img ng-src="{{detail.product.photos}}" width="300" height="300" />
-	    </div>
-	    <p><strong>Description: </strong>{{detail.product.description}}</p>
-	    <p><strong>Brand:</strong> {{ detail.product.brand }}</p>
-	    <p><strong>Price:</strong> ${{ detail.product.price }}</p>
-	    <p><strong>Categories: </strong>{{detail.product.categories.join(', ').trim()}}</p>
-	    <p><strong>Price:</strong> ${{detail.product.price}}</p>
-	    <p><strong>In stock:</strong> {{detail.product.inventory_qty}}</p>
-	    <p><strong>Average Rating: </strong>{{detail.product.avgRating}}</p>
-	    <hr />
-    	<h4>Reviews:</h4>
-			<div class="well-sm" style="width: 33%; margin: 0 auto;" ng-repeat="review in detail.product.reviews">
-				<p>
-					<strong>{{review.user.email}}:  </strong>
-					<span ng-repeat="star in review.rate track by $index" class="glyphicon glyphicon-star"></span> "{{review.content}}"
-				</p>
-			</div>	    	
-			<br clear="all">
+<div class="container">
+			<div>
+				<div class="col-lg-4 col-md-4" style="margin-right: 30px">
+			    <div style="margin-bottom: 20px">
+				    <img ng-src="{{detail.product.photos}}" width="300" height="300" />
+			    </div>
+				</div>
+		    <div class="col-lg-6 col-md-4">
+			    <h1>{{detail.product.title}}</h1>
+			    <p>by {{ detail.product.brand }}</p>
+			    <h4>${{ detail.product.price }}</h4>
+			    <p><strong>Description: </strong>{{detail.product.description}}</p>
+			    <p><strong>Categories: </strong>{{detail.product.categories.join(', ').trim()}}</p>
+			    <p><strong>In stock:</strong> {{detail.product.inventory_qty}}</p>
+			    <p><strong>Average Rating: </strong>{{detail.product.avgRating}}</p>
+		    </div>
+				<br clear="all">
+			</div>
+			<div class="well">
+	    	<h4>Reviews:</h4>
+				<div class="well-sm" ng-repeat="review in detail.product.reviews">
+					<p>
+						<strong>{{review.user.email}}:  </strong>
+						<span ng-repeat="star in review.rate track by $index" class="glyphicon glyphicon-star"></span> "{{review.content}}"
+					</p>
+				</div>	    	
+				<br clear="all">
+			</div>
 	    <button ui-sref="productList" class="btn btn-primary">Back</button>
 </div>
