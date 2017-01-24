@@ -6,7 +6,7 @@ app.factory('AuthService', function($http, $window, $rootScope, $state){
   AuthService.sendLogIn = function(credentials){
     return $http({
       method: 'POST',
-      url: 'http://localhost:3005/api/authenticate',
+      url: 'https://api-sirius.herokuapp.com/api/authenticate',
       data: {
         email: credentials.email,
         password: credentials.password
