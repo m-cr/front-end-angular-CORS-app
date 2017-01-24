@@ -7,4 +7,5 @@
 	    <p><strong>Categories: </strong>{{detail.product.categories.join(', ').trim()}}</p>
 	    <p ng-hide="!detail.product.price"><strong>Price:</strong> ${{detail.product.price}}</p>
 	    <p ng-hide="!detail.product.inventory_qty || detail.product.inventory_qty === 0"><strong>In stock:</strong> {{detail.product.inventory_qty}}</p>
+	    <button ui-sref="productList" class="btn btn-primary">Back</button>
 </div>

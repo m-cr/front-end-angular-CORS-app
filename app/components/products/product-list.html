@@ -5,10 +5,10 @@
 	    <h4 style="float:left">Filter By Brand:</h4>
 	    <button 
 	    	class="btn btn-primary pull-right"
-    		ng-class="{ 'btn-warning': brand === list.brand}" 
+    		ng-class="{ 'btn-warning': brand === list.filter.brand}" 
     		style="margin:5px" 
     		ng-repeat="brand in list.brands" 
-    		ng-click="list.setBrand(brand)">{{brand}}
+    		ng-click="list.filter.brand = brand; list.filterProducts(list.filter)">{{brand}}
 	    </button>
 	    <br clear="all" />
 
@@ -16,22 +16,25 @@
 	    <span 
 	    	class="glyphicon pull-right"
 	    	style="margin:5px"
-	    	ng-class="list.rating >= rating ? 'glyphicon-star': 'glyphicon-star-empty'" 
+	    	ng-class="list.filter.rating >= rating ? 'glyphicon-star': 'glyphicon-star-empty'" 
 	  		ng-repeat="rating in list.ratings | orderBy:'id':true" 
-	    	ng-click="list.setRating(rating)"
+	    	ng-click="list.filter.rating = rating; list.filterProducts(list.filter)"
 	    >
 	    </span>
 
 	    <br clear="all" />
+	    <button ng-click="list.filter.brand = ''; list.filter.rating = ''; list.filterProducts(list.filter)" class="btn btn-primary">Reset Filters</button>
     </div>
 
 	<ul class="list-group">
 		<li 
 			style="margin:5px;" 
-			ng-repeat="product in list.products | filter: list.productFilter" 
+			ng-repeat="product in list.products" 
 			class="list-group-item"
 		>
 			<product-list-item product="product"></product-list-item>
 		</li>
 	</ul>
+
+	<h4 class="well" ng-show="!list.products.length">There are no products that match your filter settings.</h4>
 </div>
