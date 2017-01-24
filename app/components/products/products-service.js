@@ -22,7 +22,7 @@ app.factory('ProductsService', function($http){
   ProductsService.fetchAll = function(){
     return $http({
       method: 'GET',
-      url: 'https://api-sirius.herokuapp.com/api/products'
+      url: 'http://localhost:3005/api/products'
     })
     .then(function(response){
       response.data.forEach(function(product){
@@ -40,7 +40,7 @@ app.factory('ProductsService', function($http){
   ProductsService.fetchOne = function(id){
     return $http({
       method: 'GET',
-      url: 'https://api-sirius.herokuapp.com/api/products/' + id
+      url: 'http://localhost:3005/api/products/' + id
     })
     .then(function(response){
       return response.data;

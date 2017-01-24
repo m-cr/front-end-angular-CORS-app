@@ -4,7 +4,7 @@ var states = function($stateProvider) {
   $stateProvider
     .state('home', {
       url: '/',
-      templateUrl: '/components/home/home.html'
+      template: '<login></login>'
     })
     .state('productList', {
       url: '/products',
