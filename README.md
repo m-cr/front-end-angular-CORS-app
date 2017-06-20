@@ -1,4 +1,4 @@
-# Front End App for Sirius IQ Mobile
+# Front End App
 
 #Set Up Commands
 
